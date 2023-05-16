@@ -1,0 +1,145 @@
+{
+  "link": "https://forum.com/forums/topic/12091-custom-profile-fields/",
+  "id": "335291",
+  "title": "Custom Profile Fields",
+  "badges": ["Pinned"],
+  "rating": "0",
+  "user_link": "https://forum.com/profile/1392-user-12/",
+  "user": "User 12",
+  "user_avatar": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201024%201024%22%20style%3D%22background%3A%2362c486%22%3E%3Cg%3E%3Ctext%20text-anchor%3D%22middle%22%20dy%3D%22.35em%22%20x%3D%22512%22%20y%3D%22512%22%20fill%3D%22%23ffffff%22%20font-size%3D%22700%22%20font-family%3D%22-apple-system%2C%20BlinkMacSystemFont%2C%20Roboto%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%3ED%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+  "user_followers": "1",
+  "date": "2012-04-27T21:28:41Z",
+  "path": "Home/Forums/Invision Community/Feedback/",
+  "tags": ["transit","itx"],
+  "warning": "This topic is now closed to further replies",
+  "poll": {
+    "title": "question",
+    "questions": [
+        {
+          "question": "1. question",
+          "answers": [
+            {
+              "option": "177",
+              "votes": "2",
+              "voters": [
+                {
+                  "user": "user x",
+                  "user_link": "https://www.forum.com/forums/profile/11-user-x/",
+                  "user_avatar": "https://www.forum.com/forums/uploads/profile/photo-thumb-11.jpg",
+                  "date": "2012-12-13T18:52:34Z"
+                },
+                {
+                  "user": "list",
+                  "user_link": "https://www.forum.com/forums/profile/14-list/",
+                  "user_avatar": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201024%201024%22%20style%3D%22background%3A%23c46290%22%3E%3Cg%3E%3Ctext%20text-anchor%3D%22middle%22%20dy%3D%22.35em%22%20x%3D%22512%22%20y%3D%22512%22%20fill%3D%22%23ffffff%22%20font-size%3D%22700%22%20font-family%3D%22-apple-system%2C%20BlinkMacSystemFont%2C%20Roboto%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%3ET%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+                  "date": "2012-12-15T05:12:22Z"
+                }
+              ]
+            },
+            {
+              "option": "22",
+              "votes": "1",
+              "voters": [
+                {
+                  "user": "uuui",
+                  "user_link": "https://www.forum.com/forums/profile/102-uuui/",
+                  "user_avatar": "https://www.forum.com/forums/uploads/profile/photo-thumb-102.jpg",
+                  "date": "2012-12-14T02:32:18Z"
+                }
+              ]
+            }
+          ]
+        }
+    ]
+  },
+  "recommended": [
+      {
+          "id": "19929",
+          "user_link": "https://forum.com/profile/1392-user-12/",
+          "user": "user 12",
+          "user_avatar": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201024%201024%22%20style%3D%22background%3A%2362c486%22%3E%3Cg%3E%3Ctext%20text-anchor%3D%22middle%22%20dy%3D%22.35em%22%20x%3D%22512%22%20y%3D%22512%22%20fill%3D%22%23ffffff%22%20font-size%3D%22700%22%20font-family%3D%22-apple-system%2C%20BlinkMacSystemFont%2C%20Roboto%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%3ED%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+          "date": "2012-04-27T21:28:41Z",
+          "reactions": [
+            "Thanks",
+            "Like"
+          ],
+          "reaction_count": "8",
+          "link": "https://forum.com/forums/topic/12091-custom-profile-fields/?do=findComment&amp;comment=19929",
+          "ruser_link": "https://forum.com/profile/1392-user-12/",
+          "ruser": "user 12",
+          "content": "To recap: ..."
+    }
+  ],
+  "posts": [
+    {
+      "id": "139602",
+      "user_link": "https://forum.com/profile/1392-user-12/",
+      "user": "user 12",
+      "user_avatar": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201024%201024%22%20style%3D%22background%3A%2362c486%22%3E%3Cg%3E%3Ctext%20text-anchor%3D%22middle%22%20dy%3D%22.35em%22%20x%3D%22512%22%20y%3D%22512%22%20fill%3D%22%23ffffff%22%20font-size%3D%22700%22%20font-family%3D%22-apple-system%2C%20BlinkMacSystemFont%2C%20Roboto%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%3ED%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+      "badges": [
+        "Rookie"
+      ],
+      "group": "Members",
+      "group_icon": "",
+      "rank_title": "",
+      "rank_image": "",
+      "reputation_badge": "",
+      "posts": "12 posts",
+      "custom": "",
+      "user_info": [
+        "149 posts"
+      ],
+      "top_badges": [],
+      "date": "2012-04-27T21:28:41Z",
+      "content": "jjj",
+      "signature": "",
+      "reactions_users": [],
+      "reactions": [],
+      "reactions_details": []
+    },
+    {
+      "id": "1387951",
+      "user_link": "https://www.forum.com/forums/profile/14-list/",
+      "user": "list",
+      "user_avatar": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201024%201024%22%20style%3D%22background%3A%23c46290%22%3E%3Cg%3E%3Ctext%20text-anchor%3D%22middle%22%20dy%3D%22.35em%22%20x%3D%22512%22%20y%3D%22512%22%20fill%3D%22%23ffffff%22%20font-size%3D%22700%22%20font-family%3D%22-apple-system%2C%20BlinkMacSystemFont%2C%20Roboto%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%3ET%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+      "badges": [
+        "Collaborator"
+      ],
+      "group": "Clients",
+      "group_icon": "//content.forum.com/a82997/monthly_2017_12/customer_pips.png.f339b2adcbd8b09eacb8f254b5ba19b4.png",
+      "rank_title": "Master",
+      "rank_image": "<span class='ipsPip'></span><span class='ipsPip'></span><span class='ipsPip'></span><span class='ipsPip'></span><span class='ipsPip'></span><span class='ipsPip'></span><span class='ipsPip'></span><span class='ipsPip'></span>",
+      "reputation_badge": "11415",
+      "posts": "922 posts",
+      "custom": "<strong><span style=\"color:#526D08\"><span class='ft'>Location:</span><span class='fc'>Teesside</span></span></strong>",
+      "user_info": [
+        "606 posts"
+      ],
+      "top_badges": ["Popular Post"],
+      "date": "2012-04-30T16:21:24Z",
+      "content": "inas",
+      "signature": "some signature",
+      "reactions_users": [
+        {
+            "link": "https://forum.com/profile/1392-user-12/",
+            "name": "user 12"
+        }
+      ],
+      "reactions": [
+        {
+            "name": "Like",
+            "count": "1"
+        }
+      ],
+      "reactions_details": [
+        {
+          "avatar": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201024%201024%22%20style%3D%22background%3A%2362c486%22%3E%3Cg%3E%3Ctext%20text-anchor%3D%22middle%22%20dy%3D%22.35em%22%20x%3D%22512%22%20y%3D%22512%22%20fill%3D%22%23ffffff%22%20font-size%3D%22700%22%20font-family%3D%22-apple-system%2C%20BlinkMacSystemFont%2C%20Roboto%2C%20Helvetica%2C%20Arial%2C%20sans-serif%22%3ED%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E",
+          "user_link": "https://forum.com/profile/1392-user-12/",
+          "user": "user 12",
+          "reaction": "react_like",
+          "date": "2012-04-30T19:44:47Z"
+        }
+      ]
+    }
+  ]
+}
