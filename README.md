@@ -47,12 +47,12 @@ Download thread by irregular thread url into DIR
 
 Download forum quicker by ignoring user profiles and reactions
 
-    xenforo -N -n -c 'https://forum.com/forums/82-jus/'
+    invision -N -n -c 'https://forum.com/forums/82-jus/'
 
 Download whole forum
 
-    xenforo -c 'https://forum.com/forums/'
+    invision -c 'https://forum.com/forums/'
 
 Get some help
 
-    xenforo -h
+    invision -h
