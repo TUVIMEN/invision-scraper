@@ -25,16 +25,16 @@ get_user() {
     {
     echo "$1" #link
     echo "$id" #id
-    echo "$(hgrep 'h2 +class="ipsType_reset ipsType_.*"; a @p"%i\n"' <<< "$t")" #name
-    echo "$(hgrep 'div +class="ipsCoverPhoto_container"; img +src @p"%(src)a\n"' <<< "$t")" #background
-    echo "$(hgrep 'img +src +class="ipsUserPhoto .*" @p"%(src)a\n"' <<< "$t")" #avatar
-    echo "$(hgrep 'p +class="ipsType_reset ipsType_normal"; .* @M"<" @p"%i\n"' <<< "$t")" #group
-    echo "$(hgrep 'p +class="ipsType_reset ipsType_medium ipsType_light" @m"^Joined "; time +datetime @p"%(datetime)a\n", div +class="cUserHovercard_data"; li @m">Joined<"; time +datetime @p"%(datetime)a\n"' <<< "$t")" #joined
-    echo "$(hgrep 'p +class="ipsType_reset ipsType_medium ipsType_light" @m"^Last visited "; time +datetime @p"%(datetime)a\n", div +class="cUserHovercard_data"; li @m">Last visited<"; time +datetime @p"%(datetime)a\n"' <<< "$t")" #lastseen
-    echo "$(paste -d '\t' <(hgrep 'dl; dt @p"%i\n"' <<< "$t") <(hgrep 'dl; dd @p"%i\n"' <<< "$t") | sed ':x;$!{N;s/\n/\a/;bx}')" #info
-    echo "$(hgrep 'div +class="ipsFlex ipsFlex-ai:center .*"; div +class="ipsFlex ipsFlex-ai:center"; img +title @p"%(title)a\n"' <<< "$t")" #rank
-    echo "$(hgrep 'div +class="ipsFlex ipsFlex-ai:center .*"; div +class="ipsFlex ipsFlex-ai:center"; time +datetime @p"%(datetime)a\n"' <<< "$t")" #rank_date
-    echo "$(hgrep 'div +class="ipsFlex ipsFlex-ai:center .*"; ul; li; img +alt @p"%(alt)a\t"' <<< "$t")" #badges
+    echo "$(hgrep 'h2 +class="ipsType_reset ipsType_.*"; a | "%i\n"' <<< "$t")" #name
+    echo "$(hgrep 'div +class="ipsCoverPhoto_container"; img +src | "%(src)a\n"' <<< "$t")" #background
+    echo "$(hgrep 'img +src +class="ipsUserPhoto .*" | "%(src)a\n"' <<< "$t")" #avatar
+    echo "$(hgrep 'p +class="ipsType_reset ipsType_normal"; .* @M"<" | "%i\n"' <<< "$t")" #group
+    echo "$(hgrep 'p +class="ipsType_reset ipsType_medium ipsType_light" @m"^Joined "; time +datetime | "%(datetime)a\n", div +class="cUserHovercard_data"; li @m">Joined<"; time +datetime | "%(datetime)a\n"' <<< "$t")" #joined
+    echo "$(hgrep 'p +class="ipsType_reset ipsType_medium ipsType_light" @m"^Last visited "; time +datetime | "%(datetime)a\n", div +class="cUserHovercard_data"; li @m">Last visited<"; time +datetime | "%(datetime)a\n"' <<< "$t")" #lastseen
+    echo "$(paste -d '\t' <(hgrep 'dl; dt | "%i\n"' <<< "$t") <(hgrep 'dl; dd | "%i\n"' <<< "$t") | sed ':x;$!{N;s/\n/\a/;bx}')" #info
+    echo "$(hgrep 'div +class="ipsFlex ipsFlex-ai:center .*"; div +class="ipsFlex ipsFlex-ai:center"; img +title | "%(title)a\n"' <<< "$t")" #rank
+    echo "$(hgrep 'div +class="ipsFlex ipsFlex-ai:center .*"; div +class="ipsFlex ipsFlex-ai:center"; time +datetime | "%(datetime)a\n"' <<< "$t")" #rank_date
+    echo "$(hgrep 'div +class="ipsFlex ipsFlex-ai:center .*"; ul; li; img +alt | "%(alt)a\t"' <<< "$t")" #badges
     } | jq -RnMc '
         .["link"]=input |
         .["id"]=input |
@@ -65,43 +65,43 @@ get_thread() {
     {
     echo "$1" #link
     echo "$id" #id
-    echo "$(hgrep 'div +id="ipsLayout_mainArea"; h1 +class="ipsType_pageTitle ipsContained_container"; span +class="ipsType_break ipsContained"; span -class @p"%i\n"' <<< "$t")" #title
-    echo "$(hgrep 'div +id="ipsLayout_mainArea"; h1 +class="ipsType_pageTitle ipsContained_container"; span +title @p"%(title)a\a"' <<< "$t")" #badges
-    echo "$(hgrep 'ul +class="ipsRating_collective"; li +class="ipsRating_on" @p"1\n"' <<< "$t" | wc -l)" #rating
-    echo "$(hgrep 'div +class="ipsPageHeader .*"; a +class="ipsType_break" +href @M"<" @p"%(href)a\n"' <<< "$t")" #user_link
-    echo "$(hgrep 'div +class="ipsPageHeader .*"; a +class="ipsType_break" +href @M"<" @p"%i\n"' <<< "$t")" #user
-    echo "$(hgrep 'div +class="ipsPageHeader .*"; a +class="ipsUserPhoto .*"; img +src @p"%(src)a\n"' <<< "$t")" #user_avatar
-    echo "$(hgrep 'div +class="ipsPageHeader .*"; a +class="ipsFollow .*"; span +class="ipsCommentCount" @p"%i\n"' <<< "$t")" #user_followers
-    echo "$(hgrep 'div +class="ipsFlex-flex:11"; time +datetime @p"%(datetime)a\n"' <<< "$t")" #date
-    echo "$(hgrep 'nav +class="ipsBreadcrumb ipsBreadcrumb_top .*"; ul +data-role="breadcrumbList"; li; a; span @p"%i/"' <<< "$t" | sed 's/ <[^>]*>[^<]*<\/[^>]>//g')" #path
-    echo "$(hgrep 'div +class="ipsPageHeader .*"; ul +class="ipsTags .*"; a; span @M"<" @p"%i\t",, div +id="ipsLayout_mainArea"; h1 +class="ipsType_pageTitle ipsContained_container"; a +class="ipsTag_prefix" +rel="tag"; span @M"<" @p"%i\t"' <<< "$t")" #tags
-    echo "$(hgrep 'div +class="cTopicPostArea .*"; span +class="ipsType_warning" @p"%i\n"' <<< "$t" | sed 's#<[^>]*>[^<]*</[^>]*>##g; s/^ *//')" #warning
+    echo "$(hgrep 'div +id="ipsLayout_mainArea"; h1 +class="ipsType_pageTitle ipsContained_container"; span +class="ipsType_break ipsContained"; span -class | "%i\n"' <<< "$t")" #title
+    echo "$(hgrep 'div +id="ipsLayout_mainArea"; h1 +class="ipsType_pageTitle ipsContained_container"; span +title | "%(title)a\a"' <<< "$t")" #badges
+    echo "$(hgrep 'ul +class="ipsRating_collective"; li +class="ipsRating_on" | "1\n"' <<< "$t" | wc -l)" #rating
+    echo "$(hgrep 'div +class="ipsPageHeader .*"; a +class="ipsType_break" +href @M"<" | "%(href)a\n"' <<< "$t")" #user_link
+    echo "$(hgrep 'div +class="ipsPageHeader .*"; a +class="ipsType_break" +href @M"<" | "%i\n"' <<< "$t")" #user
+    echo "$(hgrep 'div +class="ipsPageHeader .*"; a +class="ipsUserPhoto .*"; img +src | "%(src)a\n"' <<< "$t")" #user_avatar
+    echo "$(hgrep 'div +class="ipsPageHeader .*"; a +class="ipsFollow .*"; span +class="ipsCommentCount" | "%i\n"' <<< "$t")" #user_followers
+    echo "$(hgrep 'div +class="ipsFlex-flex:11"; time +datetime | "%(datetime)a\n"' <<< "$t")" #date
+    echo "$(hgrep 'nav +class="ipsBreadcrumb ipsBreadcrumb_top .*"; ul +data-role="breadcrumbList"; li; a; span | "%i/"' <<< "$t" | sed 's/ <[^>]*>[^<]*<\/[^>]>//g')" #path
+    echo "$(hgrep 'div +class="ipsPageHeader .*"; ul +class="ipsTags .*"; a; span @M"<" | "%i\t",, div +id="ipsLayout_mainArea"; h1 +class="ipsType_pageTitle ipsContained_container"; a +class="ipsTag_prefix" +rel="tag"; span @M"<" | "%i\t"' <<< "$t")" #tags
+    echo "$(hgrep 'div +class="cTopicPostArea .*"; span +class="ipsType_warning" | "%i\n"' <<< "$t" | sed 's#<[^>]*>[^<]*</[^>]*>##g; s/^ *//')" #warning
 
-    t2="$(hgrep 'section +data-controller="core\.front\.core\.poll"; h2; @l[1]; span @l[1] @p"%i\n"' <<< "$t")"
+    t2="$(hgrep 'section +data-controller="core\.front\.core\.poll"; h2; @l[1]; span @l[1] | "%i\n"' <<< "$t")"
     echo "${t2%%<p *}" #poll.title
-    echo "$(for i in $(hgrep 'section +data-controller="core\.front\.core\.poll"; ol +class="ipsList_reset cPollList"; li @l[1] @p"%i\n"' <<< "$t")
+    echo "$(for i in $(hgrep 'section +data-controller="core\.front\.core\.poll"; ol +class="ipsList_reset cPollList"; li @l[1] | "%i\n"' <<< "$t")
 do
-    echo -n "$(hgrep 'h3 @l[0]; span @p"%i"' <<< "$i")" #question
-    echo "$(paste -d '' <(hgrep 'ul @l[0]; li; div +class="ipsGrid_span4 .*" @p"%i\n"' <<< "$i") <(hgrep -E 'ul @l[0]; li; div +class="ipsGrid_span1 .*"; .* @m"^(<[^>]*>[^<]*</[^>]*>)?[^<]+$" @p"%i\n"' <<< "$i" | sed 's/^<i.*<\/i> //') <(for j in $(hgrep -E 'ul @l[0]; li; div +class="ipsGrid_span1 .*"; .* @m"^(<[^>]*>[^<]*</[^>]*>)?[^<]+$" @p"%i\n"; a +title +href @p"%(href)a\n"' <<< "$i" | sed 's/&amp;/\&/g')
+    echo -n "$(hgrep 'h3 @l[0]; span | "%i"' <<< "$i")" #question
+    echo "$(paste -d '' <(hgrep 'ul @l[0]; li; div +class="ipsGrid_span4 .*" | "%i\n"' <<< "$i") <(hgrep -E 'ul @l[0]; li; div +class="ipsGrid_span1 .*"; .* @m"^(<[^>]*>[^<]*</[^>]*>)?[^<]+$" | "%i\n"' <<< "$i" | sed 's/^<i.*<\/i> //') <(for j in $(hgrep -E 'ul @l[0]; li; div +class="ipsGrid_span1 .*"; .* @m"^(<[^>]*>[^<]*</[^>]*>)?[^<]+$" | "%i\n"; a +title +href | "%(href)a\n"' <<< "$i" | sed 's/&amp;/\&/g')
             do
                 t2="$(ucurl -H 'X-Requested-With: XMLHttpRequest' "$j" | tr -d '\n\r\t\a\v\f')"
-                paste -d '\t' <(hgrep 'div; h3 @p"%i\n"' <<< "$t2") <(hgrep 'li' <<< "$t2" | sed '/<a href="/!{s/^.*$//}; s/^.*<a href="//; s/".*$//') <(hgrep 'li; img +src @p"%(src)a\n"' <<< "$t2") <(hgrep 'div; time +datetime @p"%(datetime)a\n"' <<< "$t2") | paste -sd '' #voters
+                paste -d '\t' <(hgrep 'div; h3 | "%i\n"' <<< "$t2") <(hgrep 'li' <<< "$t2" | sed '/<a href="/!{s/^.*$//}; s/^.*<a href="//; s/".*$//') <(hgrep 'li; img +src | "%(src)a\n"' <<< "$t2") <(hgrep 'div; time +datetime | "%(datetime)a\n"' <<< "$t2") | paste -sd '' #voters
             done) | paste -sd '')" #answers
 done | paste -sd '')" #poll.questions
 
     echo "$(for i in $(hgrep 'div +data-role="recommendedComments"; div +class="ipsBox .*" +data-commentID' <<< "$t")
     do
         {
-        echo "$(hgrep 'div +class="ipsBox .*" +data-commentID @p"%(data-commentID)a\n"' <<< "$i")"; #id
-        echo "$(hgrep 'div +class="ipsColumn .*"; .* +class="ipsComment_meta .*"; a +class="ipsType_break" +href @M"<" @p"%(href)a\n%i\n"' <<< "$i")" #user_link user
-        echo "$(hgrep 'aside; img +src @p"%(src)a\n"' <<< "$i")" #user_avatar
-        echo "$(hgrep 'div +class="ipsColumn .*"; .* +class="ipsComment_meta .*"; time +datetime @p"%(datetime)a\n"' <<< "$i")" #date
-        echo "$(hgrep 'div +class="ipsReactOverview .*"; ul; li; img +alt @p"%(alt)a\t"' <<< "$i")" #reactions
-        t2="$(hgrep 'div +class="ipsReactOverview .*"; p +class="ipsType_reset ipsType_center" @p"%i\n"' <<< "$i")"
+        echo "$(hgrep 'div +class="ipsBox .*" +data-commentID | "%(data-commentID)a\n"' <<< "$i")"; #id
+        echo "$(hgrep 'div +class="ipsColumn .*"; .* +class="ipsComment_meta .*"; a +class="ipsType_break" +href @M"<" | "%(href)a\n%i\n"' <<< "$i")" #user_link user
+        echo "$(hgrep 'aside; img +src | "%(src)a\n"' <<< "$i")" #user_avatar
+        echo "$(hgrep 'div +class="ipsColumn .*"; .* +class="ipsComment_meta .*"; time +datetime | "%(datetime)a\n"' <<< "$i")" #date
+        echo "$(hgrep 'div +class="ipsReactOverview .*"; ul; li; img +alt | "%(alt)a\t"' <<< "$i")" #reactions
+        t2="$(hgrep 'div +class="ipsReactOverview .*"; p +class="ipsType_reset ipsType_center" | "%i\n"' <<< "$i")"
         echo "${t2%% *}" #reaction_count
-        echo "$(hgrep 'div +class="ipsColumn .*"; a +class="ipsButton .*" +href @p"%(href)a\n"' <<< "$i")" #link
-        echo "$(hgrep 'div +class="ipsColumn .*"; a +class="ipsType_break" +href @M"<" @p"%(href)a\n%i\n" @l[1]' <<< "$i")" #ruser_link ruser
-        echo "$(hgrep 'div +class="ipsColumn .*"; div +class="ipsType_richText .*" @p"%i\n"' <<< "$i")" #content
+        echo "$(hgrep 'div +class="ipsColumn .*"; a +class="ipsButton .*" +href | "%(href)a\n"' <<< "$i")" #link
+        echo "$(hgrep 'div +class="ipsColumn .*"; a +class="ipsType_break" +href @M"<" @l[1] | "%(href)a\n%i\n"' <<< "$i")" #ruser_link ruser
+        echo "$(hgrep 'div +class="ipsColumn .*"; div +class="ipsType_richText .*" | "%i\n"' <<< "$i")" #content
         } | sed ':x;$!{N;s/\n/\a/;bx}'
     done | sed ':x;$!{N;s/\n/\v/;bx}')" #recommended
 
@@ -110,9 +110,9 @@ done | paste -sd '')" #poll.questions
         for i in $(hgrep 'article +id="elComment_[0-9]*"' <<< "$t")
         do
             {
-            t2="$(hgrep 'article +id="elComment_[0-9]*" @p"%(id)a\n"' <<< "$i")"
+            t2="$(hgrep 'article +id="elComment_[0-9]*" | "%(id)a\n"' <<< "$i")"
             echo "${t2#elComment_}" #id
-            t2="$(hgrep 'aside; h3 +class="ipsType_sectionHead cAuthorPane_author .*"; a +href @M"<" @p"%(href)a\n"' <<< "$i")" #user_link
+            t2="$(hgrep 'aside; h3 +class="ipsType_sectionHead cAuthorPane_author .*"; a +href @M"<" | "%(href)a\n"' <<< "$i")" #user_link
             echo "$t2"
 
             if [ "$nousers" -eq 0 -a -n "$t2" ]
@@ -120,39 +120,39 @@ done | paste -sd '')" #poll.questions
                 get_user "$t2"
             fi
 
-            echo "$(hgrep 'aside; h3 +class="ipsType_sectionHead cAuthorPane_author .*"; .* @M"<" @p"%i\n"' <<< "$i")" #user
-            echo "$(hgrep 'aside; .* +class="cAuthorPane_photo" +data-role="photo"; a +class="ipsUserPhoto .*"; img +src @p"%(src)a\n"' <<< "$i")" #user_avatar
-            echo "$(hgrep 'aside; .* +class="cAuthorPane_photo" +data-role="photo"; img +title +alt @p"%(alt)a\a", aside; .* +class="cAuthorPane_photo" +data-role="photo"; span +class="cAuthorPane_badge .*" +title=".* joined recently" @p"%(title)a\a"' <<< "$i")" #badges
-            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="group"; .* @M"<" @p"%i\n"' <<< "$i")" #group
-            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="group-icon"; img +src @p"%(src)a\n"' <<< "$i")" #group_icon
-            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="rank-title" @p"%i\n"' <<< "$i")" #rank_title
-            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="rank-image"; .* @p"%i\n"' <<< "$i")" #rank_image
-            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="reputation-badge"; span @p"%i\n"' <<< "$i" | sed 's/^<i .*<\/i> //;s/,//g;q')" #reputation_badge
-            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="posts" @p"%i\n"' <<< "$i" | sed 's/ .*//;s/,//g')" #posts
-            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="custom-field" @p"%i\n"' <<< "$i")" #custom
-            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; ul +class="ipsList_reset .*"; li; a +title @l[1] @p"%(title)a\a"' <<< "$i";)" #user_info
-            echo "$(hgrep 'div +class="ipsComment_meta .*"; div +class=".*ipsComment_badges.*"; ul +class="ipsList_reset .*"; li; strong @p"%i\a"' <<< "$i" | sed 's#<i [^>]*></i> ##g')" #top_badges
-            echo "$(hgrep 'div +class="ipsComment_meta .*"; time +datetime @p"%(datetime)a\n"' <<< "$i")" #date
-            echo "$(hgrep 'div +class="cPost_contentWrap"; div +data-role="commentContent" @p"%i\n"' <<< "$i")" #content
-            echo "$(hgrep 'div +data-role="memberSignature"; div +data-ipslazyload @p"%i\n"' <<< "$i")" #signature
-            echo "$(hgrep 'ul +class="ipsReact_reactions"; li +class="ipsReact_overview .*"; a +rel +href @p"%(href)a\a%i\v"' <<< "$i")" #reactions_users
+            echo "$(hgrep 'aside; h3 +class="ipsType_sectionHead cAuthorPane_author .*"; .* @M"<" | "%i\n"' <<< "$i")" #user
+            echo "$(hgrep 'aside; .* +class="cAuthorPane_photo" +data-role="photo"; a +class="ipsUserPhoto .*"; img +src | "%(src)a\n"' <<< "$i")" #user_avatar
+            echo "$(hgrep 'aside; .* +class="cAuthorPane_photo" +data-role="photo"; img +title +alt | "%(alt)a\a", aside; .* +class="cAuthorPane_photo" +data-role="photo"; span +class="cAuthorPane_badge .*" +title=".* joined recently" | "%(title)a\a"' <<< "$i")" #badges
+            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="group"; .* @M"<" | "%i\n"' <<< "$i")" #group
+            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="group-icon"; img +src | "%(src)a\n"' <<< "$i")" #group_icon
+            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="rank-title" | "%i\n"' <<< "$i")" #rank_title
+            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="rank-image"; .* | "%i\n"' <<< "$i")" #rank_image
+            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="reputation-badge"; span | "%i\n"' <<< "$i" | sed 's/^<i .*<\/i> //;s/,//g;q')" #reputation_badge
+            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="posts" | "%i\n"' <<< "$i" | sed 's/ .*//;s/,//g')" #posts
+            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; li +data-role="custom-field" | "%i\n"' <<< "$i")" #custom
+            echo "$(hgrep 'aside; ul +class="cAuthorPane_info .*"; ul +class="ipsList_reset .*"; li; a +title @l[1] | "%(title)a\a"' <<< "$i";)" #user_info
+            echo "$(hgrep 'div +class="ipsComment_meta .*"; div +class=".*ipsComment_badges.*"; ul +class="ipsList_reset .*"; li; strong | "%i\a"' <<< "$i" | sed 's#<i [^>]*></i> ##g')" #top_badges
+            echo "$(hgrep 'div +class="ipsComment_meta .*"; time +datetime | "%(datetime)a\n"' <<< "$i")" #date
+            echo "$(hgrep 'div +class="cPost_contentWrap"; div +data-role="commentContent" | "%i\n"' <<< "$i")" #content
+            echo "$(hgrep 'div +data-role="memberSignature"; div +data-ipslazyload | "%i\n"' <<< "$i")" #signature
+            echo "$(hgrep 'ul +class="ipsReact_reactions"; li +class="ipsReact_overview .*"; a +rel +href | "%(href)a\a%i\v"' <<< "$i")" #reactions_users
             echo "$(hgrep 'ul +class="ipsReact_reactions"; li +class="ipsReact_reactCount"; span @a[0]' <<< "$i" | sed ':x;s/<span><img .* alt="//; s/".*//; N; s/\n/\v/; s/<span>//; s/<\/span>//; N; s/\n/\a/; bx')" #reactions
 
             if [ "$noreactions" -eq 0 ]
             then
-                next2="$(hgrep 'ul +class="ipsReact_reactions"; li +class="ipsReact_reactCount"; a +href @p"%(href)a\n"' <<< "$i" | sed 's/&amp;/\&/g; s/&reaction=[0-9]\+/\&changed=1\&reaction=all/;q')"
+                next2="$(hgrep 'ul +class="ipsReact_reactions"; li +class="ipsReact_reactCount"; a +href | "%(href)a\n"' <<< "$i" | sed 's/&amp;/\&/g; s/&reaction=[0-9]\+/\&changed=1\&reaction=all/;q')"
                 echo "$(while :
                 do
                     [ -z "$next2" ] && break
                     t2="$(ucurl -H 'X-Requested-With: XMLHttpRequest' "$next2" | tr -d '\n\r\t\a\v')"
-                    echo "$(for j in $(hgrep 'ol; li' <<< "$t2"); do hgrep 'a +class="ipsUserPhoto .*"; img +src @p"%(src)a\v", a +class="ipsType_break" +href @p"%(href)a\v%i\v", span +class="ipsType_light"; img +src @p"%(src)a\v", time +datetime @p"%(datetime)a\a"' <<< "$j" | sed 's#\v[^\v]\+/reactions/\([^\.]*\)\.[^\v]\+#\v\1#'; done)" #avatar user_link user reaction date
-                    next2="$(hgrep 'li +class="ipsPagination_next"; a +href @p"%(href)a\n"' <<< "$t2" | sed 's/&amp;/\&/; s/$/\&changed=1\&reactions=all/;q')"
+                    echo "$(for j in $(hgrep 'ol; li' <<< "$t2"); do hgrep 'a +class="ipsUserPhoto .*"; img +src | "%(src)a\v", a +class="ipsType_break" +href | "%(href)a\v%i\v", span +class="ipsType_light"; img +src | "%(src)a\v", time +datetime | "%(datetime)a\a"' <<< "$j" | sed 's#\v[^\v]\+/reactions/\([^\.]*\)\.[^\v]\+#\v\1#'; done)" #avatar user_link user reaction date
+                    next2="$(hgrep 'li +class="ipsPagination_next"; a +href | "%(href)a\n"' <<< "$t2" | sed 's/&amp;/\&/; s/$/\&changed=1\&reactions=all/;q')"
                 done | sed ':x;$!{N;s/\n//;bx}')" #reactions_details
             fi
             } | sed ':x;$!{N;s/\n/\t/;bx}'
         done #posts
 
-        next="$(hgrep 'ul +class="ipsPagination"; li +class="ipsPagination_next"; a @p"%(href)a\n"' <<< "$t" | sed 's#/page/\([0-9]\+\)/.*#/?page=\1#;q')"
+        next="$(hgrep 'ul +class="ipsPagination"; li +class="ipsPagination_next"; a | "%(href)a\n"' <<< "$t" | sed 's#/page/\([0-9]\+\)/.*#/?page=\1#;q')"
         [ -z "$next" ] && break
         t="$(ucurl -H 'X-Requested-With: XMLHttpRequest' "$next" | tr -d '\n\r\t\a\v')"
     done
@@ -237,7 +237,7 @@ done | paste -sd '')" #poll.questions
 }
 
 get_category() {
-    for i in $(hgrep 'li +class="cForumRow ipsDataItem .*"; div +class="ipsDataItem_main"; h4; a +href @p"%(href)a\n", div +class="ipsForumGrid"; a +class="cForumGrid__hero-link" +href @p"%(href)a\n"' <&0)
+    for i in $(hgrep 'li +class="cForumRow ipsDataItem .*"; div +class="ipsDataItem_main"; h4; a +href | "%(href)a\n", div +class="ipsForumGrid"; a +class="cForumGrid__hero-link" +href | "%(href)a\n"' <&0)
     do
         echo "$i"
         get_forum "$i"
@@ -249,13 +249,13 @@ get_forum() {
     t="$(ucurl "$1")"
     while :
     do
-        for j in $(hgrep 'ol +data-role="tableRows"; h4; a +class="" +href=".*/" @p"%(href)a\n"' <<< "$t")
+        for j in $(hgrep 'ol +data-role="tableRows"; h4; a +class="" +href=".*/" | "%(href)a\n"' <<< "$t")
         do
             [ "$(jobs | wc -l)" -gt "$maxprocs" ] && wait %%
             get_thread "$j" &
         done
 
-        next="$(hgrep 'ul +class="ipsPagination"; li +class="ipsPagination_next"; a @p"%(href)a\n"' <<< "$t" | head -n1)"
+        next="$(hgrep 'ul +class="ipsPagination"; li +class="ipsPagination_next"; a | "%(href)a\n"' <<< "$t" | head -n1)"
         [ -z "$next" ] && break
         echo "$next" >&2
         t="$(ucurl -H 'X-Requested-With: XMLHttpRequest' "$next")"
