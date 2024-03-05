@@ -1,6 +1,6 @@
-# invision
+# invision-scraper
 
-A bash script for downloading invision forums in json.
+A bash script for scraping invision forums in json.
 
 ## Requirements
 
@@ -9,7 +9,7 @@ A bash script for downloading invision forums in json.
 
 ## Installation
     
-    install -m 755 invision /usr/bin
+    install -m 755 invision-scraper /usr/bin
 
 ## Supported links formats
 
@@ -33,26 +33,26 @@ Here's example of [topic](topic-example.json), and [user](user-example.json).
 
 ## Usage
 
-    invision [URL]...
+    invision-scraper [URL]...
 
 Script downloads pages of threads and users and writes them in files. Files are named by their id's, but user files start with 'm-'.
 
 Download forum into current directory using 4 processes
 
-    invision -p 4 'https://forum.com/forums/19-name/'
+    invision-scraper -p 4 'https://forum.com/forums/19-name/'
 
 Download thread by irregular thread url into DIR 
 
-    invision -d DIR -t 'https://forum.com/abcdef/loop/'
+    invision-scraper -d DIR -t 'https://forum.com/abcdef/loop/'
 
 Download forum quicker by ignoring user profiles and reactions
 
-    invision -N -n -c 'https://forum.com/forums/82-jus/'
+    invision-scraper -N -n -c 'https://forum.com/forums/82-jus/'
 
 Download whole forum
 
-    invision -c 'https://forum.com/forums/'
+    invision-scraper -c 'https://forum.com/forums/'
 
 Get some help
 
-    invision -h
+    invision-scraper -h
