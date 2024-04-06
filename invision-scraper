@@ -154,6 +154,7 @@ done | paste -sd '')" #poll.questions
 
         next="$(hgrep 'ul +class="ipsPagination"; li +class="ipsPagination_next"; a | "%(href)a\n"' <<< "$t" | sed 's#/page/\([0-9]\+\)/.*#/?page=\1#;q')"
         [ -z "$next" ] && break
+        echo "$next" >&2
         t="$(ucurl -H 'X-Requested-With: XMLHttpRequest' "$next" | tr -d '\n\r\t\a\v')"
     done
     } | jq -RnMcs '
@@ -239,7 +240,7 @@ done | paste -sd '')" #poll.questions
 get_category() {
     for i in $(hgrep 'li +class="cForumRow ipsDataItem .*"; div +class="ipsDataItem_main"; h4; a +href | "%(href)a\n", div +class="ipsForumGrid"; a +class="cForumGrid__hero-link" +href | "%(href)a\n"' <&0)
     do
-        echo "$i"
+        echo "$i" >&2
         get_forum "$i"
     done
 }
@@ -310,6 +311,8 @@ do
             get_thread "$1";;
         http?(s)://+(+([[:alnum:]-]).)+([[:alpha:]])/?(*[/?])forum?(s)/*)
             get_forum "$1";;
+        http?(s)://+(+([[:alnum:]-]).)+([[:alpha:]])*)
+            ucurl "$1" | get_category "$1";;
     esac
     shift
 done

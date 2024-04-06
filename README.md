@@ -13,11 +13,12 @@ A bash script for scraping invision forums in json.
 
 ## Supported links formats
 
-    http?(s)://forum.com/topic/*
-    http?(s)://forum.com/forum[s]/topic/*
-    http?(s)://forum.com/forums/*
-    http?(s)://forum.com/forum[s]/forums/*
-    http?(s)://forum.com/*/forums/*
+    http(s)?://forum.com/topic/.*
+    http(s)?://forum.com/forum(s)?/topic/.*
+    http(s)?://forum.com/forums/.*
+    http(s)?://forum.com/forum(s)?/forums/.*
+    http(s)?://forum.com/.*/forums/.*
+    http(s)?://forum.com.*
 
 
 ## Json format
