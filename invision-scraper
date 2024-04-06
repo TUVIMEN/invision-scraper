@@ -144,6 +144,7 @@ done | paste -sd '')" #poll.questions
                 echo "$(while :
                 do
                     [ -z "$next2" ] && break
+                    echo "$next2" >&2
                     t2="$(ucurl -H 'X-Requested-With: XMLHttpRequest' "$next2" | tr -d '\n\r\t\a\v')"
                     echo "$(for j in $(hgrep 'ol; li' <<< "$t2"); do hgrep 'a +class="ipsUserPhoto .*"; img +src | "%(src)a\v", a +class="ipsType_break" +href | "%(href)a\v%i\v", span +class="ipsType_light"; img +src | "%(src)a\v", time +datetime | "%(datetime)a\a"' <<< "$j" | sed 's#\v[^\v]\+/reactions/\([^\.]*\)\.[^\v]\+#\v\1#'; done)" #avatar user_link user reaction date
                     next2="$(hgrep 'li +class="ipsPagination_next"; a +href | "%(href)a\n"' <<< "$t2" | sed 's/&amp;/\&/; s/$/\&changed=1\&reactions=all/;q')"
