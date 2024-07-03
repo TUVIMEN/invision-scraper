@@ -1,3 +1,7 @@
+# Archive
+
+Any further development has been transfered to [forumscraper](https://github.com/TUVIMEN/forumscraper).
+
 # invision-scraper
 
 A bash script for scraping invision forums in json.
@@ -8,7 +12,7 @@ A bash script for scraping invision forums in json.
  - [jq](https://github.com/stedolan/jq)
 
 ## Installation
-    
+
     install -m 755 invision-scraper /usr/bin
 
 ## Supported links formats
@@ -26,7 +30,7 @@ A bash script for scraping invision forums in json.
 Here's example of [topic](topic-example.json), and [user](user-example.json).
 
 ## Supported forums examples
-    
+
     https://invisioncommunity.com/forums/
     https://linustechtips.com/
     https://www.thehuntinglife.com/forums/
@@ -42,7 +46,7 @@ Download forum into current directory using 4 processes
 
     invision-scraper -p 4 'https://forum.com/forums/19-name/'
 
-Download thread by irregular thread url into DIR 
+Download thread by irregular thread url into DIR
 
     invision-scraper -d DIR -t 'https://forum.com/abcdef/loop/'
 
